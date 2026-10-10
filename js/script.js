@@ -7,10 +7,25 @@ function createSquare(num) {
     function getMarker() {
         return marker
     }
+
+    function createSquareElement() {
+        let squareElement = document.createElement('div')
+        squareElement.classList.add('square')
+        squareElement.dataset.id = num
+        squareElement.textContent = squareElement.dataset.id
+
+        squareElement.addEventListener('click', (e) => {
+            gameController.playMove(num)
+        })
+
+        return squareElement
+    }
+
     return {
         id: num,
         changeMarker,
         getMarker,
+        createSquareElement,
     }
 }
 
@@ -27,10 +42,8 @@ const gameBoard = (() => {
     }
 
     function setBoard() {
-        for (let square in squares) {
-            let squareElement = document.createElement('div')
-            squareElement.classList.add('square')
-            gameBoardElement.appendChild(squareElement)
+        for (let square of squares) {
+            gameBoardElement.appendChild(square.createSquareElement())
         }
     }
 
