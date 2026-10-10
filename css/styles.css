@@ -11,18 +11,31 @@ body {
     height: 90vmin;
     aspect-ratio: 1/1;
     place-self: center;
-    border: 1px solid rgb(165, 178, 183);
     display: grid;
     grid-template-rows: repeat(3, calc(100% / 3));
     grid-template-columns: repeat(3, calc(100% / 3));
     border-radius: 5px;
+    background-color: black;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.864);
+    overflow: clip;
 }
 
 #gameboard .square {
     width: 100%;
     height: 100%;
+    background-color: rgba(85, 86, 87, 1);
+    outline: 0px;
+    transition: all 200ms linear;
 }
 
 #gameboard .square:nth-child(odd) {
     background-color: rgba(194, 206, 218, 0.8);
+}
+
+#gameboard .square:hover {
+    transform: scale(1.02);
+}
+
+#gameboard .square:active {
+    transform: scale(0.98);
 }
