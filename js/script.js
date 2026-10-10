@@ -19,9 +19,19 @@ function createSquare(num) {
 const gameBoard = (() => {
     let squares = []
 
+    let gameBoardElement = document.querySelector('div#gameboard')
+
     for (let i = 0; i < 9; i++) {
         let square = createSquare(i)
         squares.push(square)
+    }
+
+    function setBoard() {
+        for (let square in squares) {
+            let squareElement = document.createElement('div')
+            squareElement.classList.add('square')
+            gameBoardElement.appendChild(squareElement)
+        }
     }
 
     function getAllSquares() {
@@ -35,6 +45,7 @@ const gameBoard = (() => {
     return {
         getAllSquares,
         getMarkedSquares,
+        setBoard,
     }
 })()
 
@@ -113,3 +124,4 @@ const gameController = (() => {
 
 
 
+gameBoard.setBoard()
