@@ -191,10 +191,10 @@ const gameController = (() => {
 
 
     function win(player) {
-        console.log(`${player.char} won`)
+        statusBar.show(`${player.char} won`)
     }
     function draw() {
-        console.log('This game is drawn')
+        statusBar.show('This game is drawn')
     }
 
     return {
