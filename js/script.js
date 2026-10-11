@@ -2,7 +2,11 @@ function createSquare(num) {
     let marker = false
 
     function changeMarker(newMarker) {
-        marker = newMarker
+        if (!marker) {
+            marker = newMarker
+
+            console.log(`${num} is claimed by ${newMarker}`)
+        }
     }
     function getMarker() {
         return marker
@@ -12,7 +16,6 @@ function createSquare(num) {
         let squareElement = document.createElement('div')
         squareElement.classList.add('square')
         squareElement.dataset.id = num
-        squareElement.textContent = squareElement.dataset.id
 
         squareElement.addEventListener('click', (e) => {
             gameController.playMove(num)
@@ -99,10 +102,12 @@ const gameController = (() => {
     }
 
     function playMove(square) {
+        let currentSquare = gameBoard.getAllSquares()[square]
+        if (currentSquare.getMarker()) return
+
         let currentPlayer = players[Number(gameState.turn)]
         currentPlayer.claimSquare(square)
 
-        let currentSquare = gameBoard.getAllSquares()[square]
         currentSquare.changeMarker(currentPlayer.char.toUpperCase())
 
         arbit(currentPlayer)
