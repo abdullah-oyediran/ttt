@@ -16,6 +16,22 @@ function createSquare(num) {
         let squareElement = document.createElement('div')
         squareElement.classList.add('square')
 
+        if (marker) {
+            let text = createTextElement(marker)
+            squareElement.appendChild(text)
+
+            const textNode = text.querySelector('text')
+            const bbox = textNode.getBBox()
+
+            const scaleX = 100 / bbox.width
+            const scaleY = 100 / bbox.height
+
+            const cx = bbox.x + bbox.width / 2
+            const cy = bbox.y + bbox.height / 2
+
+            textNode.setAttribute('transform', `translate(50, 50) scale(${scaleX}, ${scaleY}) translate(${-cx}, ${-cy})`)
+        }
+
         squareElement.addEventListener('click', (e) => {
             gameController.playMove(num)
         })
@@ -24,7 +40,7 @@ function createSquare(num) {
     }
 
 
-    function createTextElement(parent, text) {
+    function createTextElement(text) {
         const svg = document.createElementNS(
             'http://www.w3.org/2000/svg', 'svg'
         )
@@ -39,6 +55,12 @@ function createSquare(num) {
         textElement.setAttribute('x', '0')
         textElement.setAttribute('fill', 'rgba(255,255,255,0.5)')
 
+        textElement.classList.add('text-element')
+        textElement.textContent = text
+
+        svg.appendChild(textElement)
+
+        return svg
     }
 
     return {
