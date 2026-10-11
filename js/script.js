@@ -1,12 +1,21 @@
 const statusBar = (() => {
-    let statusBar = document.querySelector('#status-bar')
+    let statusBarElement = document.querySelector('#status-bar')
 
     function show(msg) {
-        statusBar.textContent = msg
+        statusBarElement.textContent = msg
+    }
+
+    function promptNewGame() {
+        let button = document.createElement('button')
+        button.id = 'new-game-btn'
+        button.textContent = 'Start New Game'
+
+        statusBarElement.appendChild(button)
     }
 
     return {
         show,
+        promptNewGame,
     }
 })()
 
@@ -182,8 +191,10 @@ const gameController = (() => {
     function arbit(player) {
         if ( winningCombos.some((winningCombo) => player.getClaimedSquares().includes(winningCombo)) ) {
             win(player)
+            statusBar.promptNewGame()
         } else if (gameBoard.getMarkedSquares().length === 9) {
             draw()
+            statusBar.promptNewGame()
         }
 
         return
