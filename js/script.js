@@ -53,7 +53,7 @@ function createSquare(num) {
         textElement.setAttribute('x', '0')
         textElement.setAttribute('x', '0')
         textElement.setAttribute('x', '0')
-        textElement.setAttribute('fill', 'rgba(255,255,255,0.5)')
+        textElement.setAttribute('fill', 'rgba(255,255,255,1)')
 
         textElement.classList.add('text-element')
         textElement.textContent = text
@@ -84,6 +84,7 @@ const gameBoard = (() => {
     }
 
     function setBoard() {
+        gameBoardElement.innerHTML = ''
         for (let square of squares) {
             gameBoardElement.appendChild(square.createSquareElement())
         }
@@ -149,7 +150,7 @@ const gameController = (() => {
 
         currentSquare.changeMarker(currentPlayer.char.toUpperCase())
 
-        
+        gameBoard.setBoard()
 
         arbit(currentPlayer)
 
