@@ -15,7 +15,6 @@ function createSquare(num) {
     function createSquareElement() {
         let squareElement = document.createElement('div')
         squareElement.classList.add('square')
-        squareElement.dataset.id = num
 
         squareElement.addEventListener('click', (e) => {
             gameController.playMove(num)
