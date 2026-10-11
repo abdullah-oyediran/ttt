@@ -191,7 +191,7 @@ const gameController = (() => {
 
 
     function win(player) {
-        statusBar.show(`${player.char} won`)
+        statusBar.show(`${player.char.toUpperCase9} won`)
     }
     function draw() {
         statusBar.show('This game is drawn')
