@@ -20,8 +20,15 @@ function createSquare(num) {
             let text = createTextElement(marker)
             squareElement.appendChild(text)
 
+            /*
             const textNode = text.querySelector('text')
             const bbox = textNode.getBBox()
+
+            console.log({
+                marker,
+                bboxWidth: bbox.width,
+                bboxHeight: bbox.height,
+            })
 
             const scaleX = 100 / bbox.width
             const scaleY = 100 / bbox.height
@@ -30,6 +37,7 @@ function createSquare(num) {
             const cy = bbox.y + bbox.height / 2
 
             textNode.setAttribute('transform', `translate(50, 50) scale(${scaleX}, ${scaleY}) translate(${-cx}, ${-cy})`)
+            */
         }
 
         squareElement.addEventListener('click', (e) => {
@@ -45,15 +53,16 @@ function createSquare(num) {
             'http://www.w3.org/2000/svg', 'svg'
         )
         svg.setAttribute('viewBox', '0 0 100 100')
-        svg.setAttribute('preserveAspectRatio', 'none')
+        svg.setAttribute('preserveAspectRatio', 'xMidYMidmeet')
 
         const textElement = document.createElementNS(
             'http://www.w3.org/2000/svg', 'text'
         )
-        textElement.setAttribute('x', '0')
-        textElement.setAttribute('x', '0')
-        textElement.setAttribute('x', '0')
-        textElement.setAttribute('fill', 'rgba(255,255,255,1)')
+        textElement.setAttribute('x', '20')
+        textElement.setAttribute('y', '75')
+        //textElement.setAttribute('text-anchor', 'left')
+        textElement.setAttribute('font-size', '80')
+        textElement.setAttribute('fill', 'rgba(255,255,255,0.5)')
 
         textElement.classList.add('text-element')
         textElement.textContent = text

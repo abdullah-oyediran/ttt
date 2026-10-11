@@ -45,8 +45,8 @@ body {
     align-items: center;
 }
 
-#gameboard .square svg.text-element {
-
+#gameboard .square svg text.text-element {
+    user-select: none;
 }
 
 #gameboard .square:nth-child(odd) {
