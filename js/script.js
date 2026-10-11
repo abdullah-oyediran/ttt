@@ -4,6 +4,10 @@ const statusBar = (() => {
     function show(msg) {
         statusBar.textContent = msg
     }
+
+    return {
+        show,
+    }
 })()
 
 function createSquare(num) {
@@ -13,7 +17,7 @@ function createSquare(num) {
         if (!marker) {
             marker = newMarker
 
-            console.log(`${num} is claimed by ${newMarker}`)
+            statusBar.show(`Square ${num+1} is claimed by ${newMarker.toUpperCase()}`)
         }
     }
     function getMarker() {
@@ -202,3 +206,4 @@ const gameController = (() => {
 
 
 gameBoard.setBoard()
+statusBar.show('Game Starts!')
