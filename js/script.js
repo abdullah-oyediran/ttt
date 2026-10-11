@@ -112,9 +112,9 @@ const gameController = (() => {
     }
 
     function arbit(player) {
-        if ( winningCombos.some((winningCombo) => winningCombo.includes(player.getClaimedSquares())) ) {
+        if ( winningCombos.some((winningCombo) => player.getClaimedSquares().includes(winningCombo)) ) {
             win(player)
-        } else if (gameBoard.getAllSquares().length === 9) {
+        } else if (gameBoard.getMarkedSquares().length === 9) {
             draw()
         }
 
