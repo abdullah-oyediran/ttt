@@ -149,6 +149,8 @@ const gameController = (() => {
 
         currentSquare.changeMarker(currentPlayer.char.toUpperCase())
 
+        
+
         arbit(currentPlayer)
 
 
