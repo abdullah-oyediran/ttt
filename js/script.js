@@ -1,3 +1,11 @@
+const statusBar = (() => {
+    let statusBar = document.querySelector('#status-bar')
+
+    function show(msg) {
+        statusBar.textContent = msg
+    }
+})()
+
 function createSquare(num) {
     let marker = false
 
