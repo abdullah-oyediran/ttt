@@ -24,8 +24,21 @@ function createSquare(num) {
     }
 
 
-    function createTextElement() {
-        
+    function createTextElement(parent, text) {
+        const svg = document.createElementNS(
+            'http://www.w3.org/2000/svg', 'svg'
+        )
+        svg.setAttribute('viewBox', '0 0 100 100')
+        svg.setAttribute('preserveAspectRatio', 'none')
+
+        const textElement = document.createElementNS(
+            'http://www.w3.org/2000/svg', 'text'
+        )
+        textElement.setAttribute('x', '0')
+        textElement.setAttribute('x', '0')
+        textElement.setAttribute('x', '0')
+        textElement.setAttribute('fill', 'rgba(255,255,255,0.5)')
+
     }
 
     return {
