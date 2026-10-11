@@ -23,6 +23,11 @@ function createSquare(num) {
         return squareElement
     }
 
+
+    function createTextElement() {
+        
+    }
+
     return {
         id: num,
         changeMarker,

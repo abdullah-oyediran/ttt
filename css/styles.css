@@ -4,6 +4,14 @@ body {
     margin: 0px;
     display: flex;
     place-content: center;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.03) 0px,
+        rgba(0,0,0,0.03) 2px,
+        transparent 2px,
+        transparent 4px
+    ),
+    linear-gradient(to bottom, #8b5a2b, #5c3a21);
 }
 
 #gameboard {
@@ -17,7 +25,6 @@ body {
     place-content: center;
     place-items: center;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.171);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.864);
     overflow: clip;
 }
@@ -30,16 +37,28 @@ body {
     transition: all 200ms linear;
 }
 
+#gameboard .square svg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameboard .square svg.text-element {
+    
+}
+
 #gameboard .square:nth-child(odd) {
-    background-color: rgba(194, 206, 218, 0.2);
+    background-color: rgba(194, 206, 218, 0.653);
 }
 
 #gameboard .square:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
 #gameboard .square:active {
-    transform: scale(0.98);
+    transform: scale(1.01);
 }
 
 #gameboard .square.x {
