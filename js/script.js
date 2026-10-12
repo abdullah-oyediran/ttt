@@ -233,7 +233,7 @@ const gameController = (() => {
             player.reset()
         }
         gameBoard.setBoard()
-        statusBarElement.show('Game Starts!')
+        statusBar.show('Game Starts!')
     }
 
     function arbit(player) {
