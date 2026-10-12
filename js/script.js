@@ -8,7 +8,7 @@ const statusBar = (() => {
     function promptNewGame() {
         let button = document.createElement('button')
         button.id = 'new-game-btn'
-        button.textContent = 'Start New Game'
+        button.textContent = 'New Game'
 
         statusBarElement.appendChild(button)
     }
@@ -21,6 +21,8 @@ const statusBar = (() => {
 
 function createSquare(num) {
     let marker = false
+    let squareElement
+    let handleClick
 
     function changeMarker(newMarker) {
         if (!marker) {
@@ -32,9 +34,16 @@ function createSquare(num) {
     function getMarker() {
         return marker
     }
+    function reset() {
+        marker = false
+        squareElement.removeEventListener('click', handleClick)
+    }
 
     function createSquareElement() {
-        let squareElement = document.createElement('div')
+        squareElement = document.createElement('div')
+        handleClick = () => {
+            gameController.playMove(num)
+        }
         squareElement.classList.add('square')
 
         if (marker) {
@@ -61,9 +70,9 @@ function createSquare(num) {
             */
         }
 
-        squareElement.addEventListener('click', (e) => {
-            gameController.playMove(num)
-        })
+        
+
+        squareElement.addEventListener('click', handleClick)
 
         return squareElement
     }
@@ -98,6 +107,7 @@ function createSquare(num) {
         changeMarker,
         getMarker,
         createSquareElement,
+        reset,
     }
 }
 
@@ -130,7 +140,7 @@ const gameBoard = (() => {
 
     function reset() {
         for (let square of squares) {
-            square.marker = false
+            square.reset()
         }
     }
 
@@ -200,13 +210,17 @@ const gameController = (() => {
         gameState.turn = !gameState.turn
     }
 
+    function stopGame() {
+        gameBoard.reset()
+        statusBar.promptNewGame()
+    }
+
     function arbit(player) {
         if ( winningCombos.some((winningCombo) => player.getClaimedSquares().includes(winningCombo)) ) {
             win(player)
-            statusBar.promptNewGame()
+            
         } else if (gameBoard.getMarkedSquares().length === 9) {
             draw()
-            statusBar.promptNewGame()
         }
 
         return
@@ -215,9 +229,11 @@ const gameController = (() => {
 
     function win(player) {
         statusBar.show(`Player ${player.char.toUpperCase()} won!`)
+        stopGame()
     }
     function draw() {
         statusBar.show('This game is drawn')
+        stopGame()
     }
 
     return {

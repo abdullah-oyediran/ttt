@@ -88,3 +88,27 @@ body {
     transform: scale(1.2, 1);
     transition: all 200ms ease-in;
 }
+#status-bar #new-game-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    user-select: none;
+    outline: none;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.204);
+    color: rgba(255, 255, 255, 0.785);
+    border-radius: 2px;
+    transition: transform 200ms linear, background-color 200ms linear;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1),
+                inset 0px 4px 30px rgba(0, 0, 0, 0.1);
+}
+#status-bar #new-game-btn:hover {
+    background-color: #8b592b1c;
+}
+#status-bar #new-game-btn:active {
+    background-color: white;
+    color: black;
+    
+}
+#status-bar:hover #new-game-btn {
+    transform: scale(calc(1/1.2), 1);
+    transition: all 400ms ease-in;
+}
