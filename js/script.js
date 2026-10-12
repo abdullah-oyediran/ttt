@@ -128,10 +128,17 @@ const gameBoard = (() => {
         return squares.filter(square => square.getMarker())
     }
 
+    function reset() {
+        for (let square of squares) {
+            square.marker = false
+        }
+    }
+
     return {
         getAllSquares,
         getMarkedSquares,
         setBoard,
+        reset,
     }
 })()
 
