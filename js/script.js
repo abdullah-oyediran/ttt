@@ -2,6 +2,7 @@ const statusBar = (() => {
     let statusBarElement = document.querySelector('#status-bar')
 
     function show(msg) {
+        statusBarElement.innerHTML = ''
         statusBarElement.textContent = msg
     }
 
@@ -9,6 +10,8 @@ const statusBar = (() => {
         let button = document.createElement('button')
         button.id = 'new-game-btn'
         button.textContent = 'New Game'
+
+        button.addEventListener('click', gameController.startNewGame)
 
         statusBarElement.appendChild(button)
     }
@@ -36,6 +39,8 @@ function createSquare(num) {
     }
     function reset() {
         marker = false
+    }
+    function disable() {
         squareElement.removeEventListener('click', handleClick)
     }
 
@@ -108,6 +113,7 @@ function createSquare(num) {
         getMarker,
         createSquareElement,
         reset,
+        disable,
     }
 }
 
@@ -143,12 +149,19 @@ const gameBoard = (() => {
             square.reset()
         }
     }
+    function disable() {
+        for (let square of squares) {
+            square.disable()
+        }
+
+    }
 
     return {
         getAllSquares,
         getMarkedSquares,
         setBoard,
         reset,
+        disable,
     }
 })()
 
@@ -211,8 +224,16 @@ const gameController = (() => {
     }
 
     function stopGame() {
-        gameBoard.reset()
+        gameBoard.disable()
         statusBar.promptNewGame()
+    }
+    function startNewGame() {
+        gameBoard.reset()
+        for (let player of players) {
+            player.reset()
+        }
+        gameBoard.setBoard()
+        statusBarElement.show('Game Starts!')
     }
 
     function arbit(player) {
@@ -238,7 +259,7 @@ const gameController = (() => {
 
     return {
         playMove,
-        players,
+        startNewGame,
     }
 })()
 
