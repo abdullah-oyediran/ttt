@@ -156,10 +156,15 @@ function createPlayer(char) {
         claimedSquares.push(num)
     }
 
+    function reset() {
+        claimedSquares = []
+    }
+
     return {
         char,
         getClaimedSquares,
         claimSquare,
+        reset,
     }
 }
 
